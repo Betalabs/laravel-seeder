@@ -1,5 +1,5 @@
 {
-  "name": "diegohq/laravel-seeder",
+  "name": "betalabs/laravel-seeder",
   "description": "Versioned, environment-based Seeders in Laravel. Used while original does not update to Laravel 5.7",
   "keywords": [
     "data",
@@ -18,10 +18,10 @@
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
-    "illuminate/support": "5.7.*|5.8.*|^6.0|^7.0|^8.0",
-    "illuminate/console": "5.7.*|5.8.*|^6.0|^7.0|^8.0",
-    "illuminate/database": "5.7.*|5.8.*|^6.0|^7.0|^8.0",
-    "illuminate/filesystem": "5.7.*|5.8.*|^6.0|^7.0|^8.0"
+    "illuminate/support": "5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0",
+    "illuminate/console": "5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0",
+    "illuminate/database": "5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0",
+    "illuminate/filesystem": "5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0"
   },
   "require-dev": {
     "mockery/mockery": "^1.1",
