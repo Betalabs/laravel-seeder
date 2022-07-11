@@ -33,8 +33,7 @@ class SeederMigrationCreator extends MigrationCreator
         $stub = $this->getStub($table, $create);
 
         $this->files->put(
-            $path = $this->getPath($name, $path),
-            $this->populateStub($name, $stub, $table)
+            $this->populateStub($stub, $table)
         );
 
         // Next, we will fire any hooks that are supposed to fire after a migration is
@@ -60,22 +59,6 @@ class SeederMigrationCreator extends MigrationCreator
         if (class_exists($className = $this->getClassName($name))) {
             throw new InvalidArgumentException("{$className} already exists.");
         }
-    }
-
-    /**
-     * Populate the place-holders in the migration stub.
-     *
-     * @param string $name
-     * @param string $stub
-     * @param string $table
-     *
-     * @return string
-     */
-    protected function populateStub($name, $stub, $table): string
-    {
-        $stub = str_replace('{{class}}', $this->getClassName($name), $stub);
-
-        return $stub;
     }
 
     /**
