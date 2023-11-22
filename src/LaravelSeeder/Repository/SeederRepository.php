@@ -7,7 +7,7 @@ use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Schema\Blueprint;
 
-class SeederRepository implements SeederRepositoryInterface
+abstract class SeederRepository implements SeederRepositoryInterface
 {
     /**
      * The name of the environment to run in.
@@ -74,10 +74,9 @@ class SeederRepository implements SeederRepositoryInterface
 
     /**
      * Resolve the database connection instance.
-     *
-     * @return Connection
+     * @return \Illuminate\Database\ConnectionInterface
      */
-    public function getConnection(): Connection
+    public function getConnection():\Illuminate\Database\ConnectionInterface
     {
         return $this->connectionResolver->connection($this->connection);
     }
