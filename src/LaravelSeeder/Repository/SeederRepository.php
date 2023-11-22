@@ -7,7 +7,7 @@ use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Schema\Blueprint;
 
-abstract class SeederRepository implements SeederRepositoryInterface
+class SeederRepository implements SeederRepositoryInterface
 {
     /**
      * The name of the environment to run in.
@@ -60,6 +60,18 @@ abstract class SeederRepository implements SeederRepositoryInterface
             ->where('env', '=', $this->getEnvironment())
             ->pluck('seed')
             ->toArray();
+    }
+
+    /**
+     * Get the list of migrations.
+     *
+     * @param int $batch
+     *
+     * @return array
+     */
+    public function getMigrationsByBatch($batch) : array
+    {
+        return $this->getMigrationBatches();
     }
 
     /**
@@ -238,7 +250,7 @@ abstract class SeederRepository implements SeederRepositoryInterface
      *
      * @return array
      */
-    public function getMigrationBatches()
+    public function getMigrationBatches(): array
     {
         return $this->table()
                 ->orderBy('batch', 'asc')
