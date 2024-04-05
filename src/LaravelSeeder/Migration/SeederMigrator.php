@@ -7,6 +7,7 @@ use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class SeederMigrator extends Migrator implements SeederMigratorInterface
 {
@@ -106,7 +107,7 @@ class SeederMigrator extends Migrator implements SeederMigratorInterface
             $name = $this->getMigrationName($file)
         );
 
-        $this->note("<comment>Seeding:</comment> {$name}");
+        Log::log('info', "Seeding: {$name}");
 
         if ($pretend) {
             $this->pretendToRun($seeder, 'run');
@@ -120,8 +121,7 @@ class SeederMigrator extends Migrator implements SeederMigratorInterface
         // repository so that we don't try to run it next time we do a seeder
         // in the application. A seeder repository keeps the migrate order.
         $this->repository->log($name, $batch);
-
-        $this->note("<info>Seeded:</info> $name");
+        Log::log('info', "Seeded: {$name}");
     }
 
     /**
@@ -208,8 +208,7 @@ class SeederMigrator extends Migrator implements SeederMigratorInterface
         $seeder = $this->resolve(
             $name = $this->getMigrationName($file)
         );
-
-        $this->note("<comment>Rolling back:</comment> {$name}");
+        Log::log('info', "Rolling back: {$name}");
 
         if ($pretend) {
             $this->pretendToRun($seeder, 'down');
@@ -224,7 +223,6 @@ class SeederMigrator extends Migrator implements SeederMigratorInterface
         // the migration repository so it will be considered to have not been run
         // by the application then will be able to fire by any later operation.
         $this->repository->delete($migration);
-
-        $this->note("<info>Rolled back:</info>  {$name}");
+        Log::log('info', "Rolled Back: {$name}");
     }
 }
